@@ -1,10 +1,21 @@
 # Sistema de Gestión de Matrimonio 💑
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://matrimonio-tata-nona.streamlit.app)
+[![GitHub](https://img.shields.io/badge/GitHub-jcsz657%2Fmatrimonio--tata--nona-blue?logo=github)](https://github.com/jcsz657/matrimonio-tata-nona)
+
 Sistema completo de planificación y gestión de matrimonio con presupuesto de **$10,000,000 COP**, gestión de 40 invitados (21 con hospedaje), control de presupuesto en tiempo real y análisis con Jupyter Notebooks.
+
+## 🌐 Acceso Rápido
+
+**🚀 [Abrir Aplicación Web](https://matrimonio-tata-nona.streamlit.app)** ← Haz clic aquí para usar la app sin instalar nada
+
+> La aplicación web es la forma más fácil de usar el sistema. No necesitas instalar Python ni ninguna dependencia.
 
 ## 📋 Contenido
 
-- [Instalación](#instalación)
+- [Acceso Rápido](#acceso-rápido)
+- [Deploy en Streamlit Cloud](#-deploy-en-streamlit-cloud)
+- [Instalación Local](#-instalación-local)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Guía de Uso](#guía-de-uso)
 - [Actualizar Datos](#actualizar-datos)
@@ -12,7 +23,51 @@ Sistema completo de planificación y gestión de matrimonio con presupuesto de *
 - [Scripts de Utilidad](#scripts-de-utilidad)
 - [Consejos y Mejores Prácticas](#consejos-y-mejores-prácticas)
 
-## 🚀 Instalación
+## ☁️ Deploy en Streamlit Cloud
+
+La forma más fácil de compartir la aplicación con otras personas es deployarla en Streamlit Cloud (GRATIS):
+
+### Pasos para deployar:
+
+1. **Crea una cuenta en Streamlit Cloud** (si no la tienes):
+   - Ve a [share.streamlit.io](https://share.streamlit.io)
+   - Inicia sesión con tu cuenta de GitHub
+
+2. **Deploy la app**:
+   - Haz clic en "New app"
+   - Selecciona tu repositorio: `jcsz657/matrimonio-tata-nona`
+   - Branch: `main` (o `master`)
+   - Main file path: `app_matrimonio.py`
+   - Haz clic en "Deploy!"
+
+3. **Tu app estará disponible en**:
+   ```
+   https://matrimonio-tata-nona.streamlit.app
+   ```
+
+4. **Compartir por WhatsApp**:
+   - Copia este mensaje y envíalo:
+   ```
+   🎉 ¡Hola! Te invito a ver nuestra app de planificación del matrimonio:
+
+   👉 https://matrimonio-tata-nona.streamlit.app
+
+   Aquí puedes ver el presupuesto, invitados y todos los detalles. ¡Échale un vistazo! 💑
+   ```
+
+### Actualizar la app después de cambios:
+
+Cada vez que hagas `git push` a GitHub, la app se actualizará automáticamente en Streamlit Cloud.
+
+```bash
+git add .
+git commit -m "Actualizar datos"
+git push origin main
+```
+
+---
+
+## 🚀 Instalación Local
 
 ### 1. Requisitos previos
 
@@ -45,12 +100,30 @@ Las dependencias incluyen:
 # Activar entorno virtual (si no está activado)
 source venv/bin/activate
 
-# Verificar que Jupyter está instalado
-jupyter --version
+# Verificar que Streamlit está instalado
+streamlit --version
 
 # Generar reporte de prueba
 python3 scripts/generar_reporte.py
 ```
+
+### 5. Ejecutar la aplicación web localmente
+
+```bash
+# Asegúrate de estar en la carpeta del proyecto
+cd matrimonio
+
+# Activar entorno virtual
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+
+# Iniciar la aplicación
+streamlit run app_matrimonio.py
+
+# O usa el script de inicio:
+./iniciar_app.sh
+```
+
+La app se abrirá automáticamente en tu navegador en `http://localhost:8501`
 
 ## 📁 Estructura del Proyecto
 
