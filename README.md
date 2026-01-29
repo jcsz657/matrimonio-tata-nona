@@ -36,7 +36,7 @@ La forma más fácil de compartir la aplicación con otras personas es deployarl
 2. **Deploy la app**:
    - Haz clic en "New app"
    - Selecciona tu repositorio: `jcsz657/matrimonio-tata-nona`
-   - Branch: `main` (o `master`)
+   - Branch: `master`
    - Main file path: `app_matrimonio.py`
    - Haz clic en "Deploy!"
 
@@ -62,7 +62,7 @@ Cada vez que hagas `git push` a GitHub, la app se actualizará automáticamente 
 ```bash
 git add .
 git commit -m "Actualizar datos"
-git push origin main
+git push origin master
 ```
 
 ---

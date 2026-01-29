@@ -44,7 +44,7 @@ Ejemplo: `https://bit.ly/matrimonio-tata-nona`
 3. **Haz clic en** "New app"
 4. **Configura**:
    - Repository: `jcsz657/matrimonio-tata-nona`
-   - Branch: `main`
+   - Branch: `master`
    - Main file path: `app_matrimonio.py`
 5. **Haz clic en** "Deploy!"
 6. **Espera** 2-3 minutos mientras se deploya
@@ -58,7 +58,7 @@ Cada vez que hagas cambios:
 cd matrimonio
 git add .
 git commit -m "Descripción de cambios"
-git push origin main
+git push origin master
 ```
 
 La app se actualizará automáticamente en 1-2 minutos.
