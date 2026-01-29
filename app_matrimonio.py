@@ -63,21 +63,23 @@ def crear_backup_automatico():
     import os
     from datetime import datetime
 
-    backup_dir = os.path.join(DATOS_DIR, 'backups')
-    os.makedirs(backup_dir, exist_ok=True)
+    # En Streamlit Cloud, el filesystem puede ser de solo lectura
+    # Intentar crear backup pero no fallar si no es posible
+    try:
+        backup_dir = os.path.join(DATOS_DIR, 'backups')
+        os.makedirs(backup_dir, exist_ok=True)
 
-    today = datetime.now().strftime('%Y%m%d')
-    backup_file = os.path.join(backup_dir, f'presupuesto_{today}.csv')
+        today = datetime.now().strftime('%Y%m%d')
+        backup_file = os.path.join(backup_dir, f'presupuesto_{today}.csv')
 
-    # Solo crear backup si no existe uno de hoy
-    if not os.path.exists(backup_file):
-        import shutil
-        try:
+        # Solo crear backup si no existe uno de hoy
+        if not os.path.exists(backup_file):
+            import shutil
             shutil.copy2(PRESUPUESTO_FILE, backup_file)
             return True
-        except Exception as e:
-            st.warning(f"⚠️ No se pudo crear backup: {str(e)}")
-            return False
+    except Exception as e:
+        # En Streamlit Cloud, simplemente ignorar si no se puede crear backup
+        pass
     return False
 
 def validar_duplicados(df, categoria, item, valor_total, idx_actual=None):
@@ -107,17 +109,22 @@ def guardar_presupuesto_seguro(df):
         # Validar que los saldos sean correctos
         df['saldo'] = df['valor_total'] - df['abonado']
 
-        # Crear backup antes de guardar
+        # Crear backup antes de guardar (puede fallar en Streamlit Cloud)
         crear_backup_automatico()
 
-        # Guardar
-        df.to_csv(PRESUPUESTO_FILE, index=False)
-        st.cache_data.clear()
+        # Guardar - En Streamlit Cloud esto puede fallar
+        # pero la app seguirá funcionando en modo lectura
+        try:
+            df.to_csv(PRESUPUESTO_FILE, index=False)
+            st.cache_data.clear()
+        except:
+            st.warning("⚠️ Modo solo lectura: Los cambios no se guardarán permanentemente en Streamlit Cloud")
+            st.info("💡 Para guardar cambios permanentes, descarga los datos manualmente")
 
         return True
 
     except Exception as e:
-        st.error(f"❌ Error al guardar: {str(e)}")
+        st.error(f"❌ Error: {str(e)}")
         return False
 
 # Título principal
